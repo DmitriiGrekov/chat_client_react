@@ -1,0 +1,30 @@
+import React, { useEffect } from 'react';
+import { Message } from './Message';
+import { useDispatch, useSelector } from 'react-redux';
+import { useChat } from '../../hooks/useChat';
+
+export function MessageList(props) {
+  const dispatch = useDispatch();
+  const messages = useSelector(state => state.messages);
+  const userId = useSelector(state => state.userId);
+  let flag = false;
+  const roomId = useSelector(state => state.roomId);
+  const { ms } = roomId !== 0 ? useChat(`message?room_id=${roomId}`) : '';
+
+
+  useEffect(() => {
+    const chatBlock = document.querySelector('.chat');
+    chatBlock.scrollTop = chatBlock.scrollHeight;
+  }, [messages]
+  )
+
+  return (
+    messages.map((message) => {
+      const userPrefix = userId === message.user_id ? 'user-2' : 'user-1';
+      return (
+        <Message message={message} userPrefix={userPrefix} />
+      )
+    })
+  )
+}
+

@@ -39,7 +39,7 @@ const reducer = (state = defaultState, action) => {
     case "MODAL_SHOW":
       return { ...state, modalShow: action.payload }
     case "FIND_USERS_ADD":
-      return { ...state, findUsers: [...state.findUsers, ...action.payload] }
+      return { ...state, findUsers: [...action.payload] }
     case "ADD_NEW_ROOM":
       return { ...state, data: [...action.payload, ...state.data] }
     case "GET_MESSAGE_NEW_ROOM":

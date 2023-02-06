@@ -20,7 +20,7 @@ export function ModalComponent(props) {
   const handleOnChange = (e) => {
     const target = e.target;
 
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/users/list?search=${target.value}`).then((response) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/users/list?search={"login": "${target.value}"}`).then((response) => {
       if (response.data.length > 0) {
         dispatch({ type: "FIND_USERS_ADD", payload: response.data })
       }

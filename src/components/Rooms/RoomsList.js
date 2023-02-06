@@ -15,7 +15,7 @@ export function RoomList(props) {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/rooms/list`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/rooms/list?sort={"created_at": "desc"}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
